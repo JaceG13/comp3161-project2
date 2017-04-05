@@ -105,3 +105,9 @@ CREATE TABLE Records_Medicals_For(pID varchar(6),
 	FOREIGN KEY (docID) references Doctor(docID) on delete cascade on update cascade,
 	FOREIGN KEY (diagID) references Diagnosis(diagID) on delete cascade on update cascade);
 
+delimiter //
+create procedure getAllergies(patient varchar(6))
+BEGIN
+	select pID, Medication.med_ID, med_name from Allergies join Medication on Allergies.med_ID = Medication.med_ID where pID = patient;
+END//
+DELIMITER ;
